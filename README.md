@@ -17,4 +17,8 @@ Conway's Game of Life:
 make
 ```
 
+## TODO
+1. Add Text instructions and Current state on Window
+2. Add more keyboard shortcuts (r for reset, g for glider, ...)
+3. Ability to draw on screen different patterns
 
