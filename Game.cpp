@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "GameOfLife.h"
 
+// Current game to run
 GameOfLife* gol;
 
 Game::Game() {}
@@ -23,7 +24,7 @@ void Game::init(const char *title, int width, int height, bool fullscreen) {
 
     renderer = SDL_CreateRenderer(window, -1, 0);
     if (renderer) {
-      SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+      SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
       std::cout << "Renderer created" << std::endl;
     }
 
@@ -63,11 +64,10 @@ void Game::update() {
 }
 
 void Game::render() {
-  // SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+  SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
   SDL_RenderClear(renderer);
 
   gol->render();
-
 
   SDL_RenderPresent(renderer);
 }

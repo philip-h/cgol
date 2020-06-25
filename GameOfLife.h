@@ -21,6 +21,5 @@ private:
   int screenWidth, screenHeight;
   int cellWidth, cellHeight;
 
-  int getNeighbourCount(int x, int i);
-
+  int getNeighbourCount(int i, int j);
 };
