@@ -8,52 +8,44 @@ GameOfLife::GameOfLife(SDL_Renderer* _renderer, int _screenWidth, int _screenHei
   cellWidth = int(screenWidth/cols);
   cellHeight = int(screenHeight/rows);
 
+  board.fill(false);
 
-  for (int i = 0; i < rows; i++) {
-    for (int j = 0; j < cols; j++) {
-      board[i][j] = false;
-    }
-  }
 
-  board[50][49] = true;
-  board[50][50] = true;
-  board[50][51] = true;
-  board[49][51] = true;
-  board[48][50] = true;
+  board[50*rows + 49] = true;
+  board[50*rows + 50] = true;
+  board[50*rows + 51] = true;
+  board[49*rows + 51] = true;
+  board[48*rows + 50] = true;
 }
 
 GameOfLife::~GameOfLife() {}
 
 void GameOfLife::update() {
-  bool tempBoard [rows][cols];
+  std::array<bool,rows*cols> tempBoard;
 
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
       int numNeighbours = getNeighbourCount(i, j);
-      bool isCellAlive = board[i][j];
+      bool isCellAlive = board[i*rows + j];
 
       
-      if      (isCellAlive  && numNeighbours < 2)   tempBoard[i][j] = false;
-      else if (isCellAlive  && numNeighbours > 3)   tempBoard[i][j] = false;
-      else if (!isCellAlive && numNeighbours == 3 ) tempBoard[i][j] = true;
-      else                                          tempBoard[i][j] = board[i][j];
+      if      (isCellAlive  && numNeighbours < 2)   tempBoard[i*rows + j] = false;
+      else if (isCellAlive  && numNeighbours > 3)   tempBoard[i*rows + j] = false;
+      else if (!isCellAlive && numNeighbours == 3 ) tempBoard[i*rows + j] = true;
+      else                                          tempBoard[i*rows + j] = board[i*rows + j];
 
     }
   }
 
   // Copy from temp to board
-  for (int i = 0; i < rows; i++) {
-    for (int j = 0; j < cols; j++) {
-      board[i][j] = tempBoard[i][j];
-    }
-  }
+  board = tempBoard;
 
 }
 
 void GameOfLife::render() {
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
-      if (board[i][j])
+      if (board[i*rows + j])
         SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
       else
         SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
@@ -75,7 +67,7 @@ int GameOfLife::getNeighbourCount(int row, int col) {
     for (int j = startC; j <= endC; j++) {
       // Don't count yourself
       if (i == row && j == col) continue;
-      if (board[i][j] == 1) neighbourCount ++;
+      if (board[i*rows + j] == 1) neighbourCount ++;
     }
   }
   return neighbourCount;

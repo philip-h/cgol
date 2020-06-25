@@ -43,11 +43,19 @@ void Game::handleEvents() {
     case SDL_QUIT:
       isRunning = false;
       break;
+    case SDL_KEYDOWN:
+      switch(event.key.keysym.sym) {
+        case SDLK_p:
+          togglePause();
+          break;
+      }
   }
 }
 
 void Game::update() {
-  gol->update();
+  if (!isPaused) {
+    gol->update();
+  }
 }
 
 void Game::render() {

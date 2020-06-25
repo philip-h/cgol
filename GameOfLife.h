@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game.h"
+#include <array>
 
 class GameOfLife {
 
@@ -16,7 +17,7 @@ private:
 
   static const int cols = 100;
   static const int rows = 100;
-  bool board[cols][rows];
+  std::array<bool, cols*rows> board;
   int screenWidth, screenHeight;
   int cellWidth, cellHeight;
 
