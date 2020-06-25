@@ -7,7 +7,7 @@ Game::Game() {}
 
 Game::~Game() {}
 
-void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
+void Game::init(const char *title, int width, int height, bool fullscreen) {
   int flags = 0;
   if (fullscreen) {
     flags = SDL_WINDOW_FULLSCREEN;
@@ -16,7 +16,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
   if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
     std::cout << "SDL Initialised" << std::endl;
 
-    window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+    window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, flags);
     if (window) {
       std::cout << "Window created" << std::endl;
     }
