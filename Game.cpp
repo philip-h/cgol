@@ -48,6 +48,10 @@ void Game::handleEvents() {
         case SDLK_p:
           togglePause();
           break;
+
+        case SDLK_ESCAPE:
+          isRunning = false;
+          break;
       }
   }
 }
