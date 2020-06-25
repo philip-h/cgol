@@ -9,16 +9,7 @@ GameOfLife::GameOfLife(SDL_Renderer* _renderer, int _screenWidth, int _screenHei
   cellWidth = int(screenWidth/cols);
   cellHeight = int(screenHeight/rows);
 
-  // By default, all cells are dead
-  board.fill(false);
-
-  // Except these ones!
-  // ( Creates a Glider )
-  board[50*rows + 49] = true;
-  board[50*rows + 50] = true;
-  board[50*rows + 51] = true;
-  board[49*rows + 51] = true;
-  board[48*rows + 50] = true;
+  createGosperGliderGun();
 }
 
 GameOfLife::~GameOfLife() {}
@@ -76,4 +67,74 @@ int GameOfLife::getNeighbourCount(int row, int col) {
     }
   }
   return neighbourCount;
+}
+
+void GameOfLife::createGlider() {
+  // By default, all cells are dead
+  board.fill(false);
+
+  // Except these ones!
+  // ( Creates a Glider )
+  board[50*rows + 49] = true;
+  board[50*rows + 50] = true;
+  board[50*rows + 51] = true;
+  board[49*rows + 51] = true;
+  board[48*rows + 50] = true;
+
+}
+
+void GameOfLife::createGosperGliderGun() {
+  // By default, all cells are dead
+  board.fill(false);
+
+  // Except these ones!
+  // ( Creates a Glider Gun )
+  board[11*rows + 25] = true;
+
+  board[12*rows + 23] = true;
+  board[12*rows + 25] = true;
+
+  board[13*rows + 13] = true;
+  board[13*rows + 14] = true;
+  board[13*rows + 21] = true;
+  board[13*rows + 22] = true;
+  board[13*rows + 35] = true;
+  board[13*rows + 36] = true;
+
+  board[14*rows + 12] = true;
+  board[14*rows + 16] = true;
+  board[14*rows + 21] = true;
+  board[14*rows + 22] = true;
+  board[14*rows + 35] = true;
+  board[14*rows + 36] = true;
+
+  board[15*rows + 1] = true;
+  board[15*rows + 2] = true;
+  board[15*rows + 11] = true;
+  board[15*rows + 17] = true;
+  board[15*rows + 21] = true;
+  board[15*rows + 22] = true;
+
+
+  board[16*rows + 1] = true;
+  board[16*rows + 2] = true;
+  board[16*rows + 11] = true;
+  board[16*rows + 15] = true;
+  board[16*rows + 17] = true;
+  board[16*rows + 18] = true;
+  board[16*rows + 23] = true;
+  board[16*rows + 25] = true;
+
+  board[17*rows + 11] = true;
+  board[17*rows + 17] = true;
+  board[17*rows + 25] = true;
+
+  board[18*rows + 12] = true;
+  board[18*rows + 16] = true;
+
+  board[19*rows + 13] = true;
+  board[19*rows + 14] = true;
+
+
+
 }

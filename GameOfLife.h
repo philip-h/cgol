@@ -22,4 +22,7 @@ private:
   int cellWidth, cellHeight;
 
   int getNeighbourCount(int i, int j);
+
+  void createGlider();
+  void createGosperGliderGun();
 };
